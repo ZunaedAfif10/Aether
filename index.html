@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080d1b">
+    <title>AETHER — Weather Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">✳</div>
+                <span>AETHER</span>
+            </div>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="navigation">
+                <a href="#overview" class="nav-item active">
+                    <span>◈</span> Overview
+                </a>
+                <a href="#forecast" class="nav-item">
+                    <span>☼</span> Forecast
+                </a>
+                <a href="#highlights" class="nav-item">
+                    <span>◉</span> Air & Climate
+                </a>
+            </nav>
+
+            <div class="sidebar-label favorite-heading">SAVED LOCATIONS</div>
+
+            <div id="favoriteList" class="favorite-list">
+                <p class="empty-favorites">No saved locations yet</p>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-profile">
+                    <div class="profile-avatar">A</div>
+                    <div>
+                        <strong>Weather Explorer</strong>
+                        <small>Personal Dashboard</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content" id="overview">
+
+            <header class="topbar">
+                <div class="mobile-brand">
+                    <span>✳</span> AETHER
+                </div>
+
+                <div class="breadcrumb">
+                    Dashboard <span>/</span> Weather Overview
+                </div>
+
+                <div class="topbar-right">
+                    <div class="live-indicator">
+                        <span></span> LIVE WEATHER
+                    </div>
+
+                    <div class="top-date" id="currentDate"></div>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <div>
+                    <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
+                    <h1>Weather, <span>reimagined.</span></h1>
+                    <p class="welcome-subtitle">
+                        Explore the atmosphere. Stay ahead of every forecast.
+                    </p>
+                </div>
+
+                <div class="search-wrapper">
+                    <span class="search-icon">⌕</span>
+                    <input
+                        type="text"
+                        id="cityInput"
+                        placeholder="Search any city..."
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn">Search</button>
+                </div>
+            </section>
+
+            <div id="statusMessage" class="status-message hidden"></div>
+
+            <section class="hero-card" id="weatherCard">
+
+                <div class="hero-top">
+                    <div>
+                        <div class="location-tag">
+                            <span>●</span> CURRENT LOCATION
+                        </div>
+
+                        <h2 id="cityName">Dhaka, Bangladesh</h2>
+
+                        <p class="hero-date" id="weatherDate">
+                            Discover today's atmosphere
+                        </p>
+                    </div>
+
+                    <button class="icon-button" id="favoriteBtn" aria-label="Save favorite">
+                        ♡
+                    </button>
+                </div>
+
+                <div class="hero-weather">
+
+                    <div class="temperature-section">
+                        <div class="temperature" id="temperature">--<span>°</span></div>
+                        <div class="weather-description" id="description">
+                            Waiting for weather data
+                        </div>
+                        <div class="feels-like" id="feelsLike">
+                            Feels like --°
+                        </div>
+                    </div>
+
+                    <div class="weather-art">
+                        <div class="sun-glow"></div>
+                        <img
+                            id="weatherIcon"
+                            src="https://openweathermap.org/img/wn/01d@4x.png"
+                            alt="Weather condition"
+                        >
+                    </div>
+
+                </div>
+
+                <div class="hero-footer">
+                    <div>
+                        <span class="footer-icon">☀</span>
+                        <span>Sunrise</span>
+                        <strong id="sunrise">--:--</strong>
+                    </div>
+
+                    <div>
+                        <span class="footer-icon">☾</span>
+                        <span>Sunset</span>
+                        <strong id="sunset">--:--</strong>
+                    </div>
+
+                    <div>
+                        <span class="footer-icon">◉</span>
+                        <span>Wind</span>
+                        <strong id="wind">-- m/s</strong>
+                    </div>
+
+                    <div>
+                        <span class="footer-icon">◇</span>
+                        <span>Humidity</span>
+                        <strong id="humidity">--%</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-block" id="forecast">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">ATMOSPHERIC OUTLOOK</p>
+                        <h2>Today's forecast</h2>
+                    </div>
+                    <span class="section-caption">NEXT 24 HOURS</span>
+                </div>
+
+                <div class="hourly-grid" id="hourlyForecast">
+                    <div class="forecast-placeholder">Hourly forecast will appear here</div>
+                </div>
+
+            </section>
+
+            <section class="section-block">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PLAN AHEAD</p>
+                        <h2>5-day forecast</h2>
+                    </div>
+                    <span class="section-caption">UPCOMING DAYS</span>
+                </div>
+
+                <div class="weekly-card" id="weeklyForecast">
+                    <div class="forecast-placeholder">Weekly forecast will appear here</div>
+                </div>
+
+            </section>
+
+            <section class="section-block" id="highlights">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">DEEP ATMOSPHERIC INSIGHTS</p>
+                        <h2>Weather highlights</h2>
+                    </div>
+                    <span class="section-caption">LIVE CONDITIONS</span>
+                </div>
+
+                <div class="highlights-grid">
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>◉</span>
+                            <span>HUMIDITY</span>
+                        </div>
+                        <div class="highlight-value" id="humidityDetail">--<small>%</small></div>
+                        <p>Relative moisture in the air</p>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>↗</span>
+                            <span>WIND SPEED</span>
+                        </div>
+                        <div class="highlight-value" id="windDetail">--<small> m/s</small></div>
+                        <p>Current atmospheric movement</p>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>◈</span>
+                            <span>PRESSURE</span>
+                        </div>
+                        <div class="highlight-value" id="pressure">--<small> hPa</small></div>
+                        <p>Atmospheric surface pressure</p>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>◎</span>
+                            <span>VISIBILITY</span>
+                        </div>
+                        <div class="highlight-value" id="visibility">--<small> km</small></div>
+                        <p>Distance of clear visibility</p>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>☼</span>
+                            <span>UV INDEX</span>
+                        </div>
+                        <div class="highlight-value" id="uvIndex">--</div>
+                        <p>Solar ultraviolet intensity</p>
+                    </div>
+
+                    <div class="highlight-card">
+                        <div class="highlight-top">
+                            <span>⌁</span>
+                            <span>FEELS LIKE</span>
+                        </div>
+                        <div class="highlight-value" id="feelsDetail">--<small>°C</small></div>
+                        <p>Perceived outdoor temperature</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <footer class="footer">
+                <div class="brand footer-brand">
+                    <div class="brand-icon">✳</div>
+                    <span>AETHER</span>
+                </div>
+                <p>Designed for the curious. Powered by the atmosphere.</p>
+                <span>WEATHER INTELLIGENCE © 2026</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loader"></div>
+        <p>Reading the atmosphere...</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
